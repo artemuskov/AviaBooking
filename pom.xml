@@ -96,6 +96,13 @@
                     <tomcatLoggingFile>log.txt</tomcatLoggingFile>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <outputDirectory>C:\Java\tomcat\apache-tomcat-8.5.8\webapps</outputDirectory>
+                </configuration>
+            </plugin>
         </plugins>
         <finalName>finalProject</finalName>
     </build>
