@@ -16,3 +16,12 @@ INSERT INTO person (first_name, last_name, age, passport, email) VALUES ("Artem"
 INSERT INTO person (first_name, last_name, age, passport, email) VALUES ("Roman", "Kurilko", 30, "AN5555BB", "roman@deneg.net");
 INSERT INTO person (first_name, last_name, age, passport, email) VALUES ("Sergey", "Nastaj", 32, "AGA1478BB", "sergey@deneg.net");
 INSERT INTO person (first_name, last_name, age, passport, email) VALUES ("Rita", "Rovnaya", 25, "AR4409BB", "rita@deneg.net");
+
+CREATE TABLE `locations`
+(
+	`id` BIGINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    `country` VARCHAR(128) NOT NULL,
+    `city` VARCHAR(128) NOT NULL,
+    `latitude` double NOT NULL,
+    `longitute` DOUBLE NOT NULL
+)
