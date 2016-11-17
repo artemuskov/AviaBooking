@@ -29,7 +29,7 @@ public class PersonController {
     @RequestMapping(value = "save", method = RequestMethod.GET)
     public ResponseEntity<Person> savePerson(@RequestParam String name) {
         Person newPerson = new Person();
-        newPerson.setName(name);
+        newPerson.setFirstName(name);
 
         Person savedPerson = personService.save(newPerson);
         return new ResponseEntity<>(savedPerson, HttpStatus.OK);

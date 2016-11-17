@@ -17,8 +17,8 @@ public class Person {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "name")
-    private String name;
+    @Column(name = "first_name")
+    private String firstName;
 
     public long getId() {
         return id;
@@ -28,12 +28,12 @@ public class Person {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String name) {
+        this.firstName = name;
     }
 
     @Override
@@ -42,19 +42,19 @@ public class Person {
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
         return id == person.id &&
-                Objects.equals(name, person.name);
+                Objects.equals(firstName, person.firstName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id, firstName);
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Person{");
         sb.append("id=").append(id);
-        sb.append(", name='").append(name).append('\'');
+        sb.append(", first_name='").append(firstName).append('\'');
         sb.append('}');
         return sb.toString();
     }
