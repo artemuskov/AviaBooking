@@ -1,4 +1,4 @@
-CREATE TABLE `locations`
+CREATE TABLE `location`
 (
 	`id` BIGINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     `country` VARCHAR(128) NOT NULL,
