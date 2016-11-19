@@ -29,10 +29,7 @@ public class PersonDao implements DaoAll<Person, Long> {
 
     @Override
     public Collection<Person> getAll() {
-        manager.getTransaction().begin();
         Collection<Person> persons = manager.createQuery("from person", Person.class).getResultList();
-        manager.getTransaction().commit();
-        manager.close();
         return persons;
     }
 }
