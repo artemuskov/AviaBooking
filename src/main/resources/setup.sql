@@ -1,6 +1,6 @@
 CREATE DATABASE `final_project_db`;
 
-USE `final_project_db`;
+USE `aviabooking`;
 
 CREATE TABLE `person`
 (
@@ -17,39 +17,3 @@ INSERT INTO person (first_name, last_name, age, passport, email) VALUES ("Roman"
 INSERT INTO person (first_name, last_name, age, passport, email) VALUES ("Sergey", "Nastaj", 32, "AGA1478BB", "sergey@deneg.net");
 INSERT INTO person (first_name, last_name, age, passport, email) VALUES ("Rita", "Rovnaya", 25, "AR4409BB", "rita@deneg.net");
 
-CREATE TABLE `locations`
-(
-	`id` BIGINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
-    `country` VARCHAR(128) NOT NULL,
-    `city` VARCHAR(128) NOT NULL,
-    `latitude` double NOT NULL,
-    `longitute` DOUBLE NOT NULL
-)
-
-CREATE TABLE `plane`
-(
-	`id` BIGINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
-    `model` VARCHAR(128) NOT NULL,
-)
-
-CREATE TABLE `place`
- (
- 	`id` BIGINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
-     `number` INTEGER NOT NULL,
-     `plane` INTEGER NOT NULL,
-     `empty` TINYINT NOT NULL,
-     `business` TINYINT NOT NULL,
-     FOREIGN KEY (plane) REFERENCES plane (id)
- )
-
- CREATE TABLE `flight`
- (
- 	`id` BIGINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
-     `flight_number` VARCHAR(128) NOT NULL,
-     `plane` INTEGER NOT NULL,
-     `location_out` VARCHAR(128) NOT NULL,
-     `location_in` VARCHAR(128) NOT NULL,
-      FOREIGN KEY (plane) REFERENCES plane (id),
-      FOREIGN KEY (location_out) REFERENCES location (id),
-      FOREIGN KEY (location_in) REFERENCES location (id)
- )

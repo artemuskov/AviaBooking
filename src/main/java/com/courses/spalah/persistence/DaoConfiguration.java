@@ -1,6 +1,7 @@
 package com.courses.spalah.persistence;
 
 import com.courses.spalah.domain.Person;
+import com.courses.spalah.domain.Plane;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -12,5 +13,10 @@ public class DaoConfiguration {
     @Bean
     public Dao<Person, Long> personDao() {
         return new PersonDao();
+    }
+
+    @Bean
+    public Dao<Plane, Long> planeDao() {
+        return new PlaneDao();
     }
 }
