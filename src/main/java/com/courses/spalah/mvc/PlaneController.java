@@ -1,14 +1,14 @@
 package com.courses.spalah.mvc;
 
-import com.courses.spalah.domain.Person;
 import com.courses.spalah.domain.Plane;
 import com.courses.spalah.service.PlaneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Created by Artem Uskov on 19.11.2016.
@@ -34,6 +34,12 @@ public class PlaneController {
 
         Plane savedPlane = planeService.save(newPlane);
         return new ResponseEntity<>(savedPlane, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "all", method = RequestMethod.GET)
+    public ResponseEntity<List<Plane>> getAllPlanes() {
+        List<Plane> planes = planeService.getAll();
+        return new ResponseEntity<List<Plane>>(planes, HttpStatus.OK);
     }
 
 //    @RequestMapping(value = "/requestmethod", method = RequestMethod.POST)

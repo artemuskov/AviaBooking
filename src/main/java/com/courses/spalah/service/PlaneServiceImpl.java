@@ -3,6 +3,8 @@ package com.courses.spalah.service;
 import com.courses.spalah.domain.Plane;
 import com.courses.spalah.persistence.Dao;
 
+import java.util.List;
+
 /**
  * Created by Artem Uskov on 19.11.2016.
  */
@@ -21,5 +23,15 @@ public class PlaneServiceImpl implements PlaneService {
     @Override
     public Plane save(Plane plane) {
         return planeDao.save(plane);
+    }
+
+    @Override
+    public List<Plane> getAll() {
+        return planeDao.getAll();
+    }
+
+    @Override
+    public Long delete(Long id) {
+        return planeDao.delete(id);
     }
 }

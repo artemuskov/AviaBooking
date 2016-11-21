@@ -2,7 +2,7 @@ CREATE TABLE `ticket`
  (
  	`id` BIGINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
      `seat_id` BIGINT NOT NULL,
-     `price` INT NOT NULL,
+     `price` BIGINT NOT NULL,
      `flight_id` BIGINT NOT NULL,
      `state` BIGINT NOT NULL,
      `person_id` BIGINT NOT NULL,

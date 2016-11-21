@@ -1,4 +1,4 @@
-CREATE DATABASE `final_project_db`;
+CREATE DATABASE `aviabooking`;
 
 USE `aviabooking`;
 
