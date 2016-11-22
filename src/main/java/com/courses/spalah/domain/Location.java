@@ -1,12 +1,38 @@
 package com.courses.spalah.domain;
 
+import javax.persistence.*;
+
 /**
  * Created by artem on 17.11.2016.
  */
+
+@Entity(name = "location")
 public class Location {
 
-    private String country;
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "City")
     private String city;
-    private double Latitude;
-    private double Longitute;
+
+    public Location() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
 }

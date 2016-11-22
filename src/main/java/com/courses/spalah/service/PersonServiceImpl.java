@@ -3,6 +3,8 @@ package com.courses.spalah.service;
 import com.courses.spalah.domain.Person;
 import com.courses.spalah.persistence.Dao;
 
+import java.util.List;
+
 /**
  * @author Ievgen Tararaka
  */
@@ -21,5 +23,15 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public Person save(Person person) {
         return personDao.save(person);
+    }
+
+    @Override
+    public List<Person> getAll() {
+        return personDao.getAll();
+    }
+
+    @Override
+    public Person delete(long id) {
+        return personDao.delete(id);
     }
 }

@@ -17,8 +17,24 @@ public class Person {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     @Column(name = "first_name")
     private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(name = "age")
+    private int age;
+
+    @Column(name = "passport")
+    private String passport;
+
+    @Column(name = "email")
+    private String email;
+
+    public Person() {
+    }
 
     public long getId() {
         return id;
@@ -32,8 +48,40 @@ public class Person {
         return firstName;
     }
 
-    public void setFirstName(String name) {
-        this.firstName = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getPassport() {
+        return passport;
+    }
+
+    public void setPassport(String passport) {
+        this.passport = passport;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
