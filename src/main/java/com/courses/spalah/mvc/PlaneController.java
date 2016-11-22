@@ -27,20 +27,20 @@ public class PlaneController {
         return new ResponseEntity<Plane>(plane,HttpStatus.OK);
     }
 
-    @RequestMapping(value = "save", method = RequestMethod.GET)
-    public ResponseEntity<Plane> savePlane(@RequestParam String model) {
-        Plane newPlane = new Plane();
-        newPlane.setPlaneName(model);
-        Plane savedPlane = planeService.save(newPlane);
-        return new ResponseEntity<>(savedPlane, HttpStatus.OK);
-    }
-
-//    @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-//    @ResponseBody
-//    public ResponseEntity<Plane> savePlane(@ResponseBody Plane plane) {
-//        Plane newPlane = planeService.save(plane);
-//        return new ResponseEntity<>(newPlane, HttpStatus.OK);
+//    @RequestMapping(value = "save", method = RequestMethod.GET)
+//    public ResponseEntity<Plane> savePlane(@RequestParam String model) {
+//        Plane newPlane = new Plane();
+//        newPlane.setPlaneName(model);
+//        Plane savedPlane = planeService.save(newPlane);
+//        return new ResponseEntity<>(savedPlane, HttpStatus.OK);
 //    }
+
+    @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<Plane> savePlane(@RequestBody Plane plane) {
+        Plane newPlane = planeService.save(plane);
+        return new ResponseEntity<>(newPlane, HttpStatus.OK);
+    }
 
     @RequestMapping(value = "all", method = RequestMethod.GET)
     public ResponseEntity<List<Plane>> getAllPlanes() {
@@ -54,18 +54,20 @@ public class PlaneController {
         return new ResponseEntity<Plane>(deletedPlane,HttpStatus.OK);
     }
 
-    @RequestMapping(value = "update", method = RequestMethod.GET)
-    public ResponseEntity<Plane> updatePlane(@RequestParam long id, @RequestParam String model) {
+//    @RequestMapping(value = "update", method = RequestMethod.GET)
+//    public ResponseEntity<Plane> updatePlane(@RequestParam long id, @RequestParam String model) {
+//        Plane updatedPlane = planeService.getById(id);
+//        updatedPlane.setPlaneName(model);
+//        planeService.update(updatedPlane);
+//        return new ResponseEntity<Plane>(updatedPlane, HttpStatus.OK);
+//    }
+
+    @RequestMapping(value = "update", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<Plane> updatePlane(@RequestParam long id, @RequestBody Plane plane) {
         Plane updatedPlane = planeService.getById(id);
-        updatedPlane.setPlaneName(model);
+        updatedPlane = plane;
         planeService.update(updatedPlane);
         return new ResponseEntity<Plane>(updatedPlane, HttpStatus.OK);
     }
-
-//    @RequestMapping(value = "/requestmethod", method = RequestMethod.POST)
-//    public String requestMethodPost(Model model) {
-//        model.addAttribute("method", "post");
-//        return "request_method";
-
-
 }
