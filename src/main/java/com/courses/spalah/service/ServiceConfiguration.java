@@ -1,5 +1,6 @@
 package com.courses.spalah.service;
 
+import com.courses.spalah.domain.Location;
 import com.courses.spalah.domain.Person;
 import com.courses.spalah.domain.Plane;
 import com.courses.spalah.domain.Seat;
@@ -25,5 +26,10 @@ public class ServiceConfiguration {
     @Bean
     SeatService seatService(Dao<Seat, Long> seatDao) {
         return new SeatServiceImpl(seatDao);
+    }
+
+    @Bean
+    LocationService locationService(Dao<Location, Long> locationDao) {
+        return new LocationServiceImpl(locationDao);
     }
 }
