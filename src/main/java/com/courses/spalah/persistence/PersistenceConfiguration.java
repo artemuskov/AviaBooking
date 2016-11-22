@@ -1,5 +1,8 @@
 package com.courses.spalah.persistence;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Properties;
 
 import org.springframework.context.annotation.Bean;
@@ -60,10 +63,24 @@ public class PersistenceConfiguration {
     @Bean
     public DriverManagerDataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        FileInputStream inputStream;
+        Properties properties = new Properties();
+        try {
+            inputStream = new FileInputStream("C:/final_db.properties");
+            properties.load(inputStream);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String host = properties.getProperty("url");
+        String login = properties.getProperty("username");
+        String password = properties.getProperty("password");
+
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/final_project_db");
-        dataSource.setUsername("root");
-        dataSource.setPassword("phant0m");
+        dataSource.setUrl(host);
+        dataSource.setUsername(login);
+        dataSource.setPassword(password);
 
         return dataSource;
     }

@@ -40,7 +40,7 @@ public class PlaneController {
             return new ResponseEntity<List<Plane>>(planes, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "delete", method = RequestMethod.GET)
+    @RequestMapping(value = "delete", method = RequestMethod.POST)
     public ResponseEntity<Plane> deletePlane(@RequestParam long id) {
         Plane deletedPlane = planeService.delete(id);
         return new ResponseEntity<Plane>(deletedPlane,HttpStatus.OK);

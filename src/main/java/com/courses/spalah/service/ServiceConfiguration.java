@@ -2,6 +2,7 @@ package com.courses.spalah.service;
 
 import com.courses.spalah.domain.Person;
 import com.courses.spalah.domain.Plane;
+import com.courses.spalah.domain.Seat;
 import com.courses.spalah.persistence.Dao;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,5 +20,10 @@ public class ServiceConfiguration {
     @Bean
     PlaneService planeService(Dao<Plane, Long> planeDao) {
         return new PlaneServiceImpl(planeDao);
+    }
+
+    @Bean
+    SeatService seatService(Dao<Seat, Long> seatDao) {
+        return new SeatServiceImpl(seatDao);
     }
 }
