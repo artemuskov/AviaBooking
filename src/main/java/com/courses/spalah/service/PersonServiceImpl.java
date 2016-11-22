@@ -29,4 +29,9 @@ public class PersonServiceImpl implements PersonService {
     public List<Person> getAll() {
         return personDao.getAll();
     }
+
+    @Override
+    public Person delete(long id) {
+        return personDao.delete(id);
+    }
 }

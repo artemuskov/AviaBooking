@@ -24,9 +24,9 @@ public class PlaneDao implements Dao<Plane, Long> {
     }
 
     @Override
-    public Plane save(Plane entity) {
-        entityManager.persist(entity);
-        return entity;
+    public Plane save(Plane plane) {
+        entityManager.persist(plane);
+        return plane;
     }
 
     @Override
@@ -36,7 +36,15 @@ public class PlaneDao implements Dao<Plane, Long> {
     }
 
     @Override
-    public Long delete(Long id) {
-        return id;
+    public Plane delete(Long id) {
+        Plane deletedPlane = entityManager.find(Plane.class, id);
+        entityManager.remove(deletedPlane);
+        return deletedPlane;
+    }
+
+    @Override
+    public Plane update(Plane plane) {
+        entityManager.merge(plane);
+        return plane;
     }
 }

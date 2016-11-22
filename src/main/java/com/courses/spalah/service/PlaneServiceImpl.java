@@ -31,7 +31,12 @@ public class PlaneServiceImpl implements PlaneService {
     }
 
     @Override
-    public Long delete(Long id) {
+    public Plane delete(Long id) {
         return planeDao.delete(id);
+    }
+
+    @Override
+    public Plane update(Plane plane) {
+        return planeDao.update(plane);
     }
 }

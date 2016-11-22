@@ -15,5 +15,7 @@ public interface PlaneService {
 
     List<Plane> getAll();
 
-    Long delete(Long id);
+    Plane delete(Long id);
+
+    Plane update(Plane plane);
 }

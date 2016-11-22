@@ -13,4 +13,6 @@ public interface PersonService {
     Person save(Person person);
 
     List<Person> getAll();
+
+    Person delete(long id);
 }

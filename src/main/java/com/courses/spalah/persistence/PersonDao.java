@@ -34,7 +34,14 @@ public class PersonDao implements Dao<Person, Long> {
     }
 
     @Override
-    public Long delete(Long id) {
-        return id;
+    public Person delete(Long id) {
+        Person deletedPerson = manager.find(Person.class, id);
+        manager.remove(deletedPerson);
+        return deletedPerson;
+    }
+
+    @Override
+    public Person update(Person person) {
+        return person;
     }
 }

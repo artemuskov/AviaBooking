@@ -12,5 +12,7 @@ public interface Dao<E, I> {
 
     List<E> getAll();
 
-    I delete(I id);
+    E delete(I id);
+
+    E update(E entity);
 }
