@@ -27,10 +27,10 @@ public class PlaneController {
         return new ResponseEntity<Plane>(plane,HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<Plane> savePlane(@RequestBody Plane plane) {
-        Plane newPlane = planeService.save(plane);
+    public ResponseEntity<Plane> savePlane(@RequestBody Plane plane, @RequestParam long business, @RequestParam long total) {
+        Plane newPlane = planeService.save(plane, business, total);
         return new ResponseEntity<>(newPlane, HttpStatus.OK);
     }
 

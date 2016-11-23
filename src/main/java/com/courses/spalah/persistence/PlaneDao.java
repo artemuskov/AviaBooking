@@ -5,6 +5,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -46,5 +48,10 @@ public class PlaneDao implements Dao<Plane, Long> {
     public Plane update(Plane plane) {
         entityManager.merge(plane);
         return plane;
+    }
+
+    @Override
+    public List<Plane> saveAll(List<Plane> entitys) {
+        return null;
     }
 }

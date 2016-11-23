@@ -58,4 +58,5 @@ public class Seat {
     public void setBusiness(boolean business) {
         isBusiness = business;
     }
+
 }

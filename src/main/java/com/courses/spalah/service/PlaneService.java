@@ -11,7 +11,7 @@ public interface PlaneService {
 
     Plane getById(Long id);
 
-    Plane save(Plane plane);
+    Plane save(Plane plane, Long business, Long total);
 
     List<Plane> getAll();
 

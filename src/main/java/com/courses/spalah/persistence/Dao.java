@@ -1,5 +1,8 @@
 package com.courses.spalah.persistence;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -15,4 +18,6 @@ public interface Dao<E, I> {
     E delete(I id);
 
     E update(E entity);
+
+    List<E> saveAll(List<E> entitys);
 }

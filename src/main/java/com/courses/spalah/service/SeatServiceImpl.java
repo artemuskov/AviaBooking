@@ -3,6 +3,7 @@ package com.courses.spalah.service;
 import com.courses.spalah.domain.Seat;
 import com.courses.spalah.persistence.Dao;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -12,9 +13,10 @@ public class SeatServiceImpl implements SeatService {
 
     private final Dao<Seat, Long> seatDao;
 
-    public SeatServiceImpl(Dao<Seat, Long> seatDao) {
-        this.seatDao = seatDao;
+    public SeatServiceImpl(Dao<Seat, Long> daoSaveAll) {
+        this.seatDao = daoSaveAll;
     }
+
 
     @Override
     public Seat getById(Long id) {
@@ -40,4 +42,5 @@ public class SeatServiceImpl implements SeatService {
     public Seat update(Seat seat) {
         return seatDao.update(seat);
     }
+
 }

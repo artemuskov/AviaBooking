@@ -3,6 +3,7 @@ package com.courses.spalah.domain;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by artem on 17.11.2016.
@@ -20,7 +21,7 @@ public class Plane {
     private String planeName;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "plane", orphanRemoval = true, fetch = FetchType.EAGER)
-    private Collection<Seat> seats;
+    private List<Seat> seats;
 
     public Plane() {
     }
@@ -41,11 +42,11 @@ public class Plane {
         this.planeName = planeName;
     }
 
-    public Collection<Seat> getSeats() {
+    public List<Seat> getSeats() {
         return seats;
     }
 
-    public void setSeats(Collection<Seat> seats) {
+    public void setSeats(List<Seat> seats) {
         this.seats = seats;
     }
 }

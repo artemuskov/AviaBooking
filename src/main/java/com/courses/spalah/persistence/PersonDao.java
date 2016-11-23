@@ -6,6 +6,9 @@ import javax.persistence.PersistenceContext;
 import com.courses.spalah.domain.Person;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -43,5 +46,10 @@ public class PersonDao implements Dao<Person, Long> {
     @Override
     public Person update(Person person) {
         return person;
+    }
+
+    @Override
+    public List<Person> saveAll(List<Person> entitys) {
+        return null;
     }
 }

@@ -2,6 +2,7 @@ package com.courses.spalah.service;
 
 import com.courses.spalah.domain.Seat;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -18,4 +19,5 @@ public interface SeatService {
     Seat delete(Long id);
 
     Seat update(Seat seat);
+
 }

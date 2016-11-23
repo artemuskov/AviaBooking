@@ -4,6 +4,8 @@ import com.courses.spalah.domain.Seat;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -42,4 +44,11 @@ public class SeatDao implements Dao<Seat, Long>{
     public Seat update(Seat seat) {
         return entityManager.merge(seat);
     }
+
+    @Override
+    public List<Seat> saveAll(List<Seat> seats) {
+        entityManager.persist(seats);
+        return null;
+    }
+
 }
