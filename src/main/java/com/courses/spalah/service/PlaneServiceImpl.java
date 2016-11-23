@@ -1,8 +1,10 @@
 package com.courses.spalah.service;
 
 import com.courses.spalah.domain.Plane;
+import com.courses.spalah.domain.Seat;
 import com.courses.spalah.persistence.Dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,7 +24,16 @@ public class PlaneServiceImpl implements PlaneService {
 
     @Override
     public Plane save(Plane plane) {
-        return planeDao.save(plane);
+        planeDao.save(plane);
+        List<Seat> seats = new ArrayList<>();
+        Seat seat = new Seat();
+        seat.setNumber(1);
+        seat.setPlane(plane);
+        seats.add(seat);
+        plane.setSeats(seats);
+        return planeDao.update(plane);
+     //   plane.setPlaneName("HA-HA!");
+        //return plane;
     }
 
     @Override

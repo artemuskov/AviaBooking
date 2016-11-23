@@ -1,5 +1,7 @@
 package com.courses.spalah.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 /**
@@ -19,6 +21,7 @@ public class Seat {
 
     @ManyToOne
     @JoinColumn(name = "plane_id")
+    @JsonBackReference
     private Plane plane;
 
     @Column(name = "business")

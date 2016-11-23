@@ -1,5 +1,7 @@
 package com.courses.spalah.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -20,6 +22,7 @@ public class Plane {
     private String planeName;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "plane", orphanRemoval = true, fetch = FetchType.EAGER)
+    @JsonManagedReference
     private Collection<Seat> seats;
 
     public Plane() {
