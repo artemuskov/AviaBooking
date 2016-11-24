@@ -31,7 +31,12 @@ public class ServiceConfiguration {
     }
 
     @Bean
+<<<<<<< HEAD
     TicketService ticketService(Dao<Ticket, Long> ticketDao) {
         return new TicketServiceImpl(ticketDao);
+=======
+    FlightService flightService(Dao<Flight, Long> flightDao) {
+        return new FlightServiceImpl(flightDao);
+>>>>>>> d7d10a030c2adf399d24488baeb6fd58220f2f9e
     }
 }
