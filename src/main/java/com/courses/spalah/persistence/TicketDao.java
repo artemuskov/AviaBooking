@@ -1,6 +1,7 @@
 package com.courses.spalah.persistence;
 
 import com.courses.spalah.domain.Ticket;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -9,6 +10,7 @@ import java.util.List;
 /**
  * Created by Artem Uskov on 24.11.2016.
  */
+@Transactional
 public class TicketDao implements Dao<Ticket, Long> {
 
     @PersistenceContext

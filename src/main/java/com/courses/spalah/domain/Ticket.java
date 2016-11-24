@@ -24,7 +24,6 @@ public class Ticket {
     @Column(name = "price")
     private Double price;
 
-
     @ManyToOne
     @JoinColumn(name = "flight_id", nullable = true)
     @JsonManagedReference
@@ -79,14 +78,6 @@ public class Ticket {
 
     public void setState(Long state) {
         this.state = state;
-    }
-
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
     }
 
     @Override

@@ -40,15 +40,11 @@ public class TicketController {
         return new ResponseEntity<Ticket>(idTicket, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "save", method = RequestMethod.POST/*, produces = MediaType.APPLICATION_JSON_VALUE*/)
     @ResponseBody
-    public ResponseEntity<Ticket> saveTicket(@RequestBody TicketRequest ticketRequest) {
+    public ResponseEntity<Ticket> saveTicket(@RequestParam Double price) {
         Ticket newTicket = new Ticket();
-        newTicket.setFlight(flightService.getById(ticketRequest.getFlight()));
-        newTicket.setPerson(personService.getById(ticketRequest.getPerson()));
-        newTicket.setSeat(seatService.getById(ticketRequest.getSeat()));
-        newTicket.setPrice((double) 300);
-        newTicket.setState((long) 0);
+        newTicket.setPrice(price);
         return new ResponseEntity<Ticket>(newTicket, HttpStatus.OK);
     }
 

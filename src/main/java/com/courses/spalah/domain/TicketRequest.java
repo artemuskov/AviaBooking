@@ -22,14 +22,6 @@ public class TicketRequest {
         this.id = id;
     }
 
-    public Long getSeat() {
-        return seat;
-    }
-
-    public void setSeat(Long seat) {
-        this.seat = seat;
-    }
-
     public Double getPrice() {
         return price;
     }
@@ -38,19 +30,4 @@ public class TicketRequest {
         this.price = price;
     }
 
-    public Long getFlight() {
-        return flight;
-    }
-
-    public void setFlight(Long flight) {
-        this.flight = flight;
-    }
-
-    public Long getPerson() {
-        return person;
-    }
-
-    public void setPerson(Long person) {
-        this.person = person;
-    }
 }
