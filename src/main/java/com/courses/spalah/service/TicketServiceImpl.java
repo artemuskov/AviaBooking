@@ -12,6 +12,7 @@ import java.util.List;
 public class TicketServiceImpl implements TicketService{
     private final Dao<Ticket, Long> ticketDao;
 
+
     public TicketServiceImpl(Dao<Ticket, Long> ticketDao) {
         this.ticketDao = ticketDao;
     }
@@ -22,14 +23,8 @@ public class TicketServiceImpl implements TicketService{
     }
 
     @Override
-    public Ticket save(TicketRequest ticketRequest) {
-        Ticket newTicket = new Ticket();
-        newTicket.setFlight(ticketRequest.getFlight());
-        newTicket.setPerson(ticketRequest.getPerson());
-        newTicket.setSeat(ticketRequest.getSeat());
-        newTicket.setPrice(ticketRequest.getPrice());
-        newTicket.setState(0L);
-        return ticketDao.save(newTicket);
+    public Ticket save(Ticket ticket) {
+        return ticketDao.save(ticket);
     }
 
     @Override

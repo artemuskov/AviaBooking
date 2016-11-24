@@ -6,10 +6,10 @@ package com.courses.spalah.domain;
 public class TicketRequest {
 
     private long id;
-    private Seat seat;
+    private Long seat;
     private Double price;
-    private Flight flight;
-    private Person person;
+    private Long flight;
+    private Long person;
 
     public TicketRequest() {
     }
@@ -22,11 +22,11 @@ public class TicketRequest {
         this.id = id;
     }
 
-    public Seat getSeat() {
+    public Long getSeat() {
         return seat;
     }
 
-    public void setSeat(Seat seat) {
+    public void setSeat(Long seat) {
         this.seat = seat;
     }
 
@@ -38,19 +38,19 @@ public class TicketRequest {
         this.price = price;
     }
 
-    public Flight getFlight() {
+    public Long getFlight() {
         return flight;
     }
 
-    public void setFlight(Flight flight) {
+    public void setFlight(Long flight) {
         this.flight = flight;
     }
 
-    public Person getPerson() {
+    public Long getPerson() {
         return person;
     }
 
-    public void setPerson(Person person) {
+    public void setPerson(Long person) {
         this.person = person;
     }
 }

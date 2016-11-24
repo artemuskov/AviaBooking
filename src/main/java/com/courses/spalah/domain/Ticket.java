@@ -88,4 +88,16 @@ public class Ticket {
     public void setPerson(Person person) {
         this.person = person;
     }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "id=" + id +
+                ", seat=" + seat +
+                ", price=" + price +
+                ", flight=" + flight +
+                ", state=" + state +
+                ", person=" + person +
+                '}';
+    }
 }
