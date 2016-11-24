@@ -1,44 +1,17 @@
 package com.courses.spalah.domain;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-import javax.persistence.*;
-
 /**
- * Created by Artem Uskov on 19.11.2016.
+ * Created by Artem Uskov on 24.11.2016.
  */
+public class TicketRequest {
 
-@Entity(name = "ticket")
-public class Ticket {
-
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
-    @ManyToOne
-    @JoinColumn(name = "seat_id", nullable = true)
-    @JsonManagedReference
     private Seat seat;
-
-    @Column(name = "price")
     private Double price;
-
-
-    @ManyToOne
-    @JoinColumn(name = "flight_id", nullable = true)
-    @JsonManagedReference
     private Flight flight;
-
-    @Column(name = "state")
-    private Long state;
-
-    @ManyToOne
-    @JoinColumn(name = "person_id", nullable = true)
-    @JsonManagedReference
     private Person person;
 
-    public Ticket() {
+    public TicketRequest() {
     }
 
     public long getId() {
@@ -71,14 +44,6 @@ public class Ticket {
 
     public void setFlight(Flight flight) {
         this.flight = flight;
-    }
-
-    public Long getState() {
-        return state;
-    }
-
-    public void setState(Long state) {
-        this.state = state;
     }
 
     public Person getPerson() {

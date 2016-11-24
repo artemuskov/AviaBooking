@@ -30,6 +30,11 @@ public class DaoConfiguration {
     }
 
     @Bean
+    public Dao<Ticket, Long> ticketDao() {
+        return new TicketDao();
+    }
+
+    @Bean
     public DaoForFlight<Flight, Long, RawFlight> flightDao() {
         return new FlightDao();
     }
