@@ -1,7 +1,8 @@
 package com.courses.spalah.service;
 
 import com.courses.spalah.domain.Flight;
-import com.courses.spalah.persistence.Dao;
+import com.courses.spalah.domain.RawFlight;
+import com.courses.spalah.persistence.DaoForFlight;
 
 import java.util.List;
 
@@ -10,9 +11,9 @@ import java.util.List;
  */
 
 public class FlightServiceImpl implements FlightService {
-    private final Dao<Flight, Long> flightDao;
+    private final DaoForFlight<Flight, Long, RawFlight> flightDao;
 
-    public FlightServiceImpl(Dao<Flight, Long> flightDao) {
+    public FlightServiceImpl(DaoForFlight<Flight, Long, RawFlight> flightDao) {
         this.flightDao = flightDao;
     }
 
@@ -41,4 +42,11 @@ public class FlightServiceImpl implements FlightService {
     public Flight update(Flight flight) {
         return flightDao.update(flight);
     }
+
+
+    public List<Flight> searchFlights(RawFlight searchedFlight) {
+        return flightDao.searchFlights(searchedFlight);
+    }
+
+
 }

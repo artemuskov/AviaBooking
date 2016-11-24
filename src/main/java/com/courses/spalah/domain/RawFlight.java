@@ -11,7 +11,8 @@ public class RawFlight {
     private Long arrival;
     private String departureDate;
     private String arrivalDate;
-
+    private String departureDate2;
+    private String arrivalDate2;
     public RawFlight() {
     }
 
@@ -69,5 +70,21 @@ public class RawFlight {
 
     public void setArrivalDate(String arrivalDate) {
         this.arrivalDate = arrivalDate;
+    }
+
+    public String getDepartureDate2() {
+        return departureDate2;
+    }
+
+    public void setDepartureDate2(String departureDate2) {
+        this.departureDate2 = departureDate2;
+    }
+
+    public String getArrivalDate2() {
+        return arrivalDate2;
+    }
+
+    public void setArrivalDate2(String arrivalDate2) {
+        this.arrivalDate2 = arrivalDate2;
     }
 }

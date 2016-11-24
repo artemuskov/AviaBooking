@@ -30,7 +30,7 @@ public class DaoConfiguration {
     }
 
     @Bean
-    public Dao<Flight, Long> flightDao() {
+    public DaoForFlight<Flight, Long, RawFlight> flightDao() {
         return new FlightDao();
     }
 }

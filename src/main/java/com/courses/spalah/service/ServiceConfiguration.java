@@ -2,6 +2,7 @@ package com.courses.spalah.service;
 
 import com.courses.spalah.domain.*;
 import com.courses.spalah.persistence.Dao;
+import com.courses.spalah.persistence.DaoForFlight;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -31,7 +32,7 @@ public class ServiceConfiguration {
     }
 
     @Bean
-    FlightService flightService(Dao<Flight, Long> flightDao) {
+    FlightService flightService(DaoForFlight<Flight, Long, RawFlight> flightDao) {
         return new FlightServiceImpl(flightDao);
     }
 }

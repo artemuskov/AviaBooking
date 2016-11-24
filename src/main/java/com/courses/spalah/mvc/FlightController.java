@@ -33,7 +33,7 @@ public class FlightController {
     private LocationService locationService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<Flight> getPlane(@RequestParam long id) {
+    public ResponseEntity<Flight> getFlight(@RequestParam long id) {
         Flight flight = flightService.getById(id);
         return new ResponseEntity<Flight>(flight, HttpStatus.OK);
     }
@@ -64,20 +64,20 @@ public class FlightController {
     }
 
     @RequestMapping(value = "all", method = RequestMethod.GET)
-    public ResponseEntity<List<Flight>> getAllPlanes() {
+    public ResponseEntity<List<Flight>> getAllFlight() {
         List<Flight> flights = flightService.getAll();
         return new ResponseEntity<List<Flight>>(flights, HttpStatus.OK);
     }
 
     @RequestMapping(value = "delete", method = RequestMethod.POST)
-    public ResponseEntity<Flight> deletePlane(@RequestParam long id) {
+    public ResponseEntity<Flight> deleteFlight(@RequestParam long id) {
         Flight deletedFlight = flightService.delete(id);
         return new ResponseEntity<Flight>(deletedFlight,HttpStatus.OK);
     }
 
     @RequestMapping(value = "update", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<Flight> updatePlane(@RequestParam long id, @RequestBody RawFlight flight) {
+    public ResponseEntity<Flight> updateFlight(@RequestParam long id, @RequestBody RawFlight flight) {
         Flight updatedFlight = flightService.getById(id);
         updatedFlight.setFlightNumber(flight.getFlightNumber());
         updatedFlight.setArrival(locationService.getById(flight.getArrival()));
@@ -97,5 +97,11 @@ public class FlightController {
         updatedFlight.setDepartureDate(departureDate);
         flightService.update(updatedFlight);
         return new ResponseEntity<Flight>(updatedFlight, HttpStatus.OK);
+    }
+    @RequestMapping(value = "search", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<List<Flight>> searchFlights(@RequestBody RawFlight flight) {
+        List<Flight> flights = flightService.searchFlights(flight);
+        return new ResponseEntity<List<Flight>>(flights, HttpStatus.OK);
     }
 }

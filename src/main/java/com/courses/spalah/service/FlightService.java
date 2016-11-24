@@ -1,6 +1,7 @@
 package com.courses.spalah.service;
 
 import com.courses.spalah.domain.Flight;
+import com.courses.spalah.domain.RawFlight;
 
 import java.util.List;
 
@@ -19,4 +20,6 @@ public interface FlightService {
     Flight delete(Long id);
 
     Flight update(Flight flight);
+
+    List<Flight> searchFlights(RawFlight searchedFlight);
 }
