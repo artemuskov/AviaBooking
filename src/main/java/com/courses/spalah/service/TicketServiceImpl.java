@@ -1,6 +1,7 @@
 package com.courses.spalah.service;
 
 import com.courses.spalah.domain.Ticket;
+import com.courses.spalah.domain.TicketRequest;
 import com.courses.spalah.persistence.Dao;
 
 import java.util.List;
@@ -21,8 +22,14 @@ public class TicketServiceImpl implements TicketService{
     }
 
     @Override
-    public Ticket save(Ticket ticket) {
-        return ticketDao.save(ticket);
+    public Ticket save(TicketRequest ticketRequest) {
+        Ticket newTicket = new Ticket();
+        newTicket.setFlight(ticketRequest.getFlight());
+        newTicket.setPerson(ticketRequest.getPerson());
+        newTicket.setSeat(ticketRequest.getSeat());
+        newTicket.setPrice(ticketRequest.getPrice());
+        newTicket.setState(0L);
+        return ticketDao.save(newTicket);
     }
 
     @Override

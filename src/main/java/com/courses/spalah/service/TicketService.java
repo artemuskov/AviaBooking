@@ -1,6 +1,7 @@
 package com.courses.spalah.service;
 
 import com.courses.spalah.domain.Ticket;
+import com.courses.spalah.domain.TicketRequest;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public interface TicketService {
 
     Ticket getById(Long id);
 
-    Ticket save(Ticket ticket);
+    Ticket save(TicketRequest ticketRequest);
 
     List<Ticket> getAll();
 
