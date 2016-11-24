@@ -1,6 +1,10 @@
 package com.courses.spalah.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -21,14 +25,17 @@ public class Flight {
 
     @ManyToOne
     @JoinColumn(name = "plane_id", nullable = true)
+    @JsonManagedReference
     private Plane currentPlane;
 
     @ManyToOne
     @JoinColumn(name = "departure_id", nullable = true)
+    @JsonManagedReference
     private Location departure;
 
     @ManyToOne
     @JoinColumn(name = "arrival_id", nullable = true)
+    @JsonManagedReference
     private Location arrival;
 
     @Column(name = "departure_date")
@@ -94,5 +101,19 @@ public class Flight {
 
     public void setArrivalDate(Date arrivalDate) {
         this.arrivalDate = arrivalDate;
+    }
+
+    @Override
+    public String toString() {
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return "Flight{" +
+                "id=" + id +
+                ", flightNumber='" + flightNumber + '\'' +
+                ", currentPlane=" + currentPlane.getPlaneName() +
+                ", departure=" + departure.getCity() +
+                ", arrival=" + arrival.getCity() +
+                ", departureDate=" + formatter.format(departureDate) +
+                ", arrivalDate=" + formatter.format(arrivalDate) +
+                '}';
     }
 }
