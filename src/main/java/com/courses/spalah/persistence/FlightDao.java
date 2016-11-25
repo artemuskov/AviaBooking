@@ -55,10 +55,9 @@ public class FlightDao implements DaoForFlight<Flight, Long, RawFlight> {
     @Override
     public List<Flight> searchFlights(RawFlight searchedFlight) {
         Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        System.out.println(searchedFlight.toString());
         Session session =   entityManager.unwrap(Session.class);
         Criteria crit = session.createCriteria(Flight.class);
-        if(long.class.isInstance(searchedFlight.getId()))
+        if(Long.class.isInstance(searchedFlight.getId()))
             crit.add(Restrictions.eq("id", searchedFlight.getId()));
         if(searchedFlight.getFlightNumber() != null)
             crit.add(Restrictions.eq("flightNumber", new String(searchedFlight.getFlightNumber())));

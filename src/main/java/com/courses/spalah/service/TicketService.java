@@ -15,9 +15,11 @@ public interface TicketService {
 
     Ticket save(Ticket ticket);
 
-    List<Ticket> getAll();
+    List<Ticket> getAll(Long flight);
 
     Ticket delete(Long id);
 
     Ticket update(Ticket ticket);
+
+    Boolean checkTicket(TicketRequest ticket);
 }

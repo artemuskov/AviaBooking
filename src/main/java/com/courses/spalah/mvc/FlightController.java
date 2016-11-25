@@ -34,7 +34,7 @@ public class FlightController {
     private LocationService locationService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<Flight> getFlight(@RequestParam long id) {
+    public ResponseEntity<Flight> getFlight(@RequestParam Long id) {
         Flight flight = flightService.getById(id);
         return new ResponseEntity<Flight>(flight, HttpStatus.OK);
     }
@@ -71,14 +71,14 @@ public class FlightController {
     }
 
     @RequestMapping(value = "delete", method = RequestMethod.POST)
-    public ResponseEntity<Flight> deleteFlight(@RequestParam long id) {
+    public ResponseEntity<Flight> deleteFlight(@RequestParam Long id) {
         Flight deletedFlight = flightService.delete(id);
         return new ResponseEntity<Flight>(deletedFlight,HttpStatus.OK);
     }
 
     @RequestMapping(value = "update", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<Flight> updateFlight(@RequestParam long id, @RequestBody RawFlight flight) {
+    public ResponseEntity<Flight> updateFlight(@RequestParam Long id, @RequestBody RawFlight flight) {
         Flight updatedFlight = flightService.getById(id);
         updatedFlight.setFlightNumber(flight.getFlightNumber());
         updatedFlight.setArrival(locationService.getById(flight.getArrival()));
@@ -103,11 +103,11 @@ public class FlightController {
     @ResponseBody
     public ResponseEntity<List<Flight>> searchFlights(@RequestBody RawFlight flight) {
         List<Flight> flights = flightService.searchFlights(flight);
-        String str = "";
+        /*String str = "";
         for (Iterator iterator = flights.iterator(); iterator.hasNext(); ) {
             Flight fl = (Flight) iterator.next();
             str+=fl.toString()+"\n";
-        }
+        }*/
         return new ResponseEntity<List<Flight>>(flights, HttpStatus.OK);
     }
 }

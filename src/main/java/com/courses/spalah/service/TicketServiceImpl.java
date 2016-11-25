@@ -1,7 +1,9 @@
 package com.courses.spalah.service;
 
 import com.courses.spalah.domain.Ticket;
+import com.courses.spalah.domain.TicketRequest;
 import com.courses.spalah.persistence.Dao;
+import com.courses.spalah.persistence.DaoForTicket;
 
 import java.util.List;
 
@@ -9,10 +11,10 @@ import java.util.List;
  * Created by Artem Uskov on 24.11.2016.
  */
 public class TicketServiceImpl implements TicketService{
-    private final Dao<Ticket, Long> ticketDao;
+    private final DaoForTicket<Ticket, Long, TicketRequest> ticketDao;
 
 
-    public TicketServiceImpl(Dao<Ticket, Long> ticketDao) {
+    public TicketServiceImpl(DaoForTicket<Ticket, Long, TicketRequest> ticketDao) {
         this.ticketDao = ticketDao;
     }
 
@@ -27,8 +29,8 @@ public class TicketServiceImpl implements TicketService{
     }
 
     @Override
-    public List<Ticket> getAll() {
-        return ticketDao.getAll();
+    public List<Ticket> getAll(Long flight) {
+        return ticketDao.getAll(flight);
     }
 
     @Override
@@ -39,5 +41,10 @@ public class TicketServiceImpl implements TicketService{
     @Override
     public Ticket update(Ticket ticket) {
         return ticketDao.update(ticket);
+    }
+
+    @Override
+    public Boolean checkTicket(TicketRequest ticket) {
+        return ticketDao.checkTicket(ticket);
     }
 }

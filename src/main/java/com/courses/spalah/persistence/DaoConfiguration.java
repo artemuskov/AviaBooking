@@ -30,7 +30,7 @@ public class DaoConfiguration {
     }
 
     @Bean
-    public Dao<Ticket, Long> ticketDao() {
+    public DaoForTicket<Ticket, Long, TicketRequest> ticketDao() {
         return new TicketDao();
     }
 

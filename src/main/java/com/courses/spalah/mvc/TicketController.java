@@ -1,7 +1,5 @@
 package com.courses.spalah.mvc;
 
-import com.courses.spalah.domain.Flight;
-import com.courses.spalah.domain.Person;
 import com.courses.spalah.domain.Ticket;
 import com.courses.spalah.domain.TicketRequest;
 import com.courses.spalah.service.FlightService;
@@ -13,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Created by Artem Uskov on 24.11.2016.
@@ -35,17 +35,50 @@ public class TicketController {
     private SeatService seatService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<Ticket> getTicket(@RequestParam long id) {
+    public ResponseEntity<Ticket> getTicket(@RequestParam Long id) {
         Ticket idTicket = ticketService.getById(id);
         return new ResponseEntity<Ticket>(idTicket, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "save", method = RequestMethod.POST/*, produces = MediaType.APPLICATION_JSON_VALUE*/)
+    @RequestMapping(value = "all", method = RequestMethod.GET)
+    public ResponseEntity<List<Ticket>> getAllTickets(@RequestParam Long flight) {
+        List<Ticket> tickets = ticketService.getAll(flight);
+        return new ResponseEntity<List<Ticket>>(tickets, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "delete", method = RequestMethod.POST)
+    public ResponseEntity<Ticket> deleteFlight(@RequestParam Long id) {
+        Ticket deletedTicket = ticketService.delete(id);
+        return new ResponseEntity<Ticket>(deletedTicket,HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "save", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<Ticket> saveTicket(@RequestParam Double price) {
+    public ResponseEntity<Ticket> saveTicket(@RequestBody TicketRequest ticket) {
         Ticket newTicket = new Ticket();
-        newTicket.setPrice(price);
+        if(ticketService.checkTicket(ticket))
+            return new ResponseEntity<Ticket>(newTicket, HttpStatus.BAD_REQUEST);
+        newTicket.setPerson(personService.getById(ticket.getPerson()));
+        newTicket.setState(ticket.getState());
+        newTicket.setSeat(seatService.getById(ticket.getSeat()));
+        newTicket.setFlight(flightService.getById(ticket.getFlight()));
+        newTicket.setPrice(ticket.getPrice());
+        ticketService.save(newTicket);
         return new ResponseEntity<Ticket>(newTicket, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "update", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<Ticket> updateTicket(@RequestParam Long id, @RequestBody TicketRequest ticket) {
+        Ticket updatedTicket = ticketService.getById(id);
+        if(updatedTicket.getState() == null || updatedTicket.getState() == 1 || updatedTicket.getState() == 2)
+            return new ResponseEntity<Ticket>(updatedTicket, HttpStatus.BAD_REQUEST);
+        updatedTicket.setFlight(flightService.getById(ticket.getFlight()));
+        updatedTicket.setPrice(ticket.getPrice());
+        updatedTicket.setSeat(seatService.getById(ticket.getSeat()));
+        updatedTicket.setState(ticket.getState());
+
+        ticketService.update(updatedTicket);
+        return new ResponseEntity<Ticket>(updatedTicket, HttpStatus.OK);
+    }
 }

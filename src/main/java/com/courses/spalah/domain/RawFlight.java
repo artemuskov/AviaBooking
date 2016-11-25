@@ -4,7 +4,7 @@ package com.courses.spalah.domain;
  * Created by Roman on 24.11.2016.
  */
 public class RawFlight {
-    private long id;
+    private Long id;
     private String flightNumber;
     private Long currentPlane;
     private Long departure;
@@ -16,11 +16,11 @@ public class RawFlight {
     public RawFlight() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
