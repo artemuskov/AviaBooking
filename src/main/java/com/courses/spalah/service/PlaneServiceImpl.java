@@ -45,8 +45,6 @@ public class PlaneServiceImpl implements PlaneService {
 
         plane.setSeats(seats);
         return planeDao.update(plane);
-     //   plane.setPlaneName("HA-HA!");
-        //return plane;
     }
 
     @Override

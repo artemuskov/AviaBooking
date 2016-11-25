@@ -3,7 +3,6 @@ package com.courses.spalah.domain;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Collection;
 
 /**

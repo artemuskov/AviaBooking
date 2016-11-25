@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `flight` (
 DELETE FROM `flight`;
 /*!40000 ALTER TABLE `flight` DISABLE KEYS */;
 INSERT INTO `flight` (`id`, `flight_number`, `plane_id`, `departure_id`, `arrival_id`, `departure_date`, `arrival_date`) VALUES
-	(1, 'E27', 1, 1, 2, '2016-11-19 17:50:19', '2016-11-19 17:50:21');
+	(1, 'E27', 7, 1, 2, '2016-11-19 17:50:19', '2016-11-19 17:50:21');
 /*!40000 ALTER TABLE `flight` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `location`;
@@ -252,7 +252,7 @@ CREATE TABLE IF NOT EXISTS `ticket` (
 DELETE FROM `ticket`;
 /*!40000 ALTER TABLE `ticket` DISABLE KEYS */;
 INSERT INTO `ticket` (`id`, `seat_id`, `price`, `flight_id`, `state`, `person_id`) VALUES
-	(1, 1, 200, 1, 1, 1);
+	(1, 85, 200, 1, 1, 1);
 /*!40000 ALTER TABLE `ticket` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

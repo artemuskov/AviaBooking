@@ -30,7 +30,6 @@ public class PersonController {
     public ResponseEntity<Person> savePerson(@RequestParam String name) {
         Person newPerson = new Person();
         newPerson.setFirstName(name);
-
         Person savedPerson = personService.save(newPerson);
         return new ResponseEntity<>(savedPerson, HttpStatus.OK);
     }

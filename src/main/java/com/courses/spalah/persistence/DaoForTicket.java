@@ -1,20 +1,21 @@
 package com.courses.spalah.persistence;
 
-import com.courses.spalah.domain.Flight;
-
 import java.util.List;
 
 /**
- * @author Ievgen Tararaka
+ * Created by Roman on 25.11.2016.
  */
-public interface Dao<E, I> {
+
+public interface DaoForTicket<E, I, R> {
     E getById(I id);
 
     E save(E entity);
 
-    List<E> getAll();
+    List<E> getAll(I flight);
 
     E delete(I id);
 
     E update(E entity);
+
+    Boolean checkTicket(R ticket);
 }

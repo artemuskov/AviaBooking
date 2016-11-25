@@ -1,10 +1,9 @@
 package com.courses.spalah.service;
 
-import com.courses.spalah.domain.Location;
-import com.courses.spalah.domain.Person;
-import com.courses.spalah.domain.Plane;
-import com.courses.spalah.domain.Seat;
+import com.courses.spalah.domain.*;
 import com.courses.spalah.persistence.Dao;
+import com.courses.spalah.persistence.DaoForFlight;
+import com.courses.spalah.persistence.DaoForTicket;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -31,5 +30,15 @@ public class ServiceConfiguration {
     @Bean
     LocationService locationService(Dao<Location, Long> locationDao) {
         return new LocationServiceImpl(locationDao);
+    }
+
+    @Bean
+    TicketService ticketService(DaoForTicket<Ticket, Long, TicketRequest> ticketDao) {
+        return new TicketServiceImpl(ticketDao);
+    }
+
+    @Bean
+    FlightService flightService(DaoForFlight<Flight, Long, RawFlight> flightDao) {
+        return new FlightServiceImpl(flightDao);
     }
 }

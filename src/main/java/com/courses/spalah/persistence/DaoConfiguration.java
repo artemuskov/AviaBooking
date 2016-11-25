@@ -1,9 +1,6 @@
 package com.courses.spalah.persistence;
 
-import com.courses.spalah.domain.Location;
-import com.courses.spalah.domain.Person;
-import com.courses.spalah.domain.Plane;
-import com.courses.spalah.domain.Seat;
+import com.courses.spalah.domain.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -30,5 +27,15 @@ public class DaoConfiguration {
     @Bean
     public Dao<Location, Long> locationDao() {
         return new LocationDao();
+    }
+
+    @Bean
+    public DaoForTicket<Ticket, Long, TicketRequest> ticketDao() {
+        return new TicketDao();
+    }
+
+    @Bean
+    public DaoForFlight<Flight, Long, RawFlight> flightDao() {
+        return new FlightDao();
     }
 }

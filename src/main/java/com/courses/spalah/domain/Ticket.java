@@ -1,5 +1,8 @@
 package com.courses.spalah.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 /**
@@ -12,18 +15,19 @@ public class Ticket {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "seat_id", nullable = true)
+    @JsonBackReference
     private Seat seat;
 
     @Column(name = "price")
     private Double price;
 
-
     @ManyToOne
     @JoinColumn(name = "flight_id", nullable = true)
+    @JsonIgnore
     private Flight flight;
 
     @Column(name = "state")
@@ -36,11 +40,11 @@ public class Ticket {
     public Ticket() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -82,5 +86,17 @@ public class Ticket {
 
     public void setPerson(Person person) {
         this.person = person;
+    }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "id=" + id +
+                ", seat=" + seat +
+                ", price=" + price +
+                ", flight=" + flight +
+                ", state=" + state +
+                ", person=" + person +
+                '}';
     }
 }
