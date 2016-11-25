@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author Ievgen Tararaka
@@ -18,7 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/persons",  produces = MediaType.APPLICATION_JSON_VALUE)
 public class PersonController {
     @Autowired
-       private PersonService personService;
+    private PersonService personService;
+
+    PersonController () {
+
+    }
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<Person> getPerson(@RequestParam long id) {
@@ -26,11 +27,10 @@ public class PersonController {
         return new ResponseEntity<>(person, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "save", method = RequestMethod.GET)
-    public ResponseEntity<Person> savePerson(@RequestParam String name) {
-        Person newPerson = new Person();
-        newPerson.setFirstName(name);
-        Person savedPerson = personService.save(newPerson);
+    @RequestMapping(value = "save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<Person> savePerson(@RequestBody Person person) {
+        Person savedPerson = personService.save(person);
         return new ResponseEntity<>(savedPerson, HttpStatus.OK);
     }
 }

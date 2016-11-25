@@ -107,11 +107,6 @@ public class FlightController {
     @ResponseBody
     public ResponseEntity<List<Flight>> searchFlights(@RequestBody RawFlight flight) {
         List<Flight> flights = flightService.searchFlights(flight);
-        /*String str = "";
-        for (Iterator iterator = flights.iterator(); iterator.hasNext(); ) {
-            Flight fl = (Flight) iterator.next();
-            str+=fl.toString()+"\n";
-        }*/
         return new ResponseEntity<List<Flight>>(flights, HttpStatus.OK);
     }
 }

@@ -13,6 +13,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+
 /**
  * @author Ievgen Tararaka
  */
@@ -41,6 +42,8 @@ public class PersistenceConfiguration {
         factoryBean.setJpaVendorAdapter(hibernateJpaVendorAdapter());
         factoryBean.setJpaProperties(jpaProperties());
         factoryBean.setDataSource(dataSource());
+
+        //factoryBean.setValidationMode(ValidationMode.CALLBACK);
 
         return factoryBean;
     }

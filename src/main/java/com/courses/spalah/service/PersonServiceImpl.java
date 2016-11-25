@@ -11,8 +11,10 @@ import java.util.List;
 public class PersonServiceImpl implements PersonService {
     private final Dao<Person, Long> personDao;
 
+
     public PersonServiceImpl(Dao<Person, Long> personDao) {
         this.personDao = personDao;
+
     }
 
     @Override
