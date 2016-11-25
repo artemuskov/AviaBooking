@@ -40,7 +40,7 @@ public class TicketServiceImpl implements TicketService{
         savedTicket.setSeat(seatService.getById(ticketRequest.getSeat()));
         savedTicket.setFlight(flightService.getById(ticketRequest.getFlight()));
         savedTicket.setState(ticketRequest.getState());
-        savedTicket.setPrice(ticketRequest.getPrice());
+        savedTicket.setLuggage(ticketRequest.getLuggage());
         return ticketDao.save(savedTicket);
     }
 
@@ -55,8 +55,14 @@ public class TicketServiceImpl implements TicketService{
     }
 
     @Override
-    public Ticket update(Ticket ticket) {
-        return ticketDao.update(ticket);
+    public Ticket update(Long id, TicketRequest ticketRequest) {
+        Ticket updatedTicked = getById(id);
+        updatedTicked.setFlight(flightService.getById(ticketRequest.getFlight()));
+        updatedTicked.setLuggage(ticketRequest.getLuggage());
+        updatedTicked.setSeat(seatService.getById(ticketRequest.getSeat()));
+        updatedTicked.setState(ticketRequest.getState());
+        updatedTicked.setPerson(personService.getById(ticketRequest.getPerson()));
+        return ticketDao.update(updatedTicked);
     }
 
     @Override

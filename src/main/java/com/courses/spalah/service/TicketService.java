@@ -19,7 +19,7 @@ public interface TicketService {
 
     Ticket delete(Long id);
 
-    Ticket update(Ticket ticket);
+    Ticket update(Long id, TicketRequest ticketRequest);
 
     Boolean checkTicket(TicketRequest ticket);
 }
