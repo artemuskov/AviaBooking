@@ -62,7 +62,7 @@ public class TicketController {
         newTicket.setState(ticket.getState());
         newTicket.setSeat(seatService.getById(ticket.getSeat()));
         newTicket.setFlight(flightService.getById(ticket.getFlight()));
-        newTicket.setPrice(ticket.getPrice());
+        newTicket.setLuggage(ticket.getLuggage());
         ticketService.save(newTicket);
         return new ResponseEntity<Ticket>(newTicket, HttpStatus.OK);
     }
@@ -74,7 +74,7 @@ public class TicketController {
         if(updatedTicket.getState() == null || updatedTicket.getState() == 1 || updatedTicket.getState() == 2)
             return new ResponseEntity<Ticket>(updatedTicket, HttpStatus.BAD_REQUEST);
         updatedTicket.setFlight(flightService.getById(ticket.getFlight()));
-        updatedTicket.setPrice(ticket.getPrice());
+        updatedTicket.setLuggage(ticket.getLuggage());
         updatedTicket.setSeat(seatService.getById(ticket.getSeat()));
         updatedTicket.setState(ticket.getState());
 

@@ -22,8 +22,8 @@ public class Ticket {
     @JsonBackReference
     private Seat seat;
 
-    @Column(name = "price")
-    private Double price;
+    @Column(name = "luggage")
+    private Long luggage;
 
     @ManyToOne
     @JoinColumn(name = "flight_id", nullable = true)
@@ -56,14 +56,6 @@ public class Ticket {
         this.seat = seat;
     }
 
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
     public Flight getFlight() {
         return flight;
     }
@@ -88,12 +80,20 @@ public class Ticket {
         this.person = person;
     }
 
+    public Long getLuggage() {
+        return luggage;
+    }
+
+    public void setLuggage(Long luggage) {
+        this.luggage = luggage;
+    }
+
     @Override
     public String toString() {
         return "Ticket{" +
                 "id=" + id +
                 ", seat=" + seat +
-                ", price=" + price +
+                ", luggage=" + luggage +
                 ", flight=" + flight +
                 ", state=" + state +
                 ", person=" + person +

@@ -13,6 +13,9 @@ public class RawFlight {
     private String arrivalDate;
     private String departureDate2;
     private String arrivalDate2;
+    private Double priceCasual;
+    private Double priceBusiness;
+
     public RawFlight() {
     }
 
@@ -88,6 +91,22 @@ public class RawFlight {
         this.arrivalDate2 = arrivalDate2;
     }
 
+    public Double getPriceCasual() {
+        return priceCasual;
+    }
+
+    public void setPriceCasual(Double priceCasual) {
+        this.priceCasual = priceCasual;
+    }
+
+    public Double getPriceBusiness() {
+        return priceBusiness;
+    }
+
+    public void setPriceBusiness(Double priceBusiness) {
+        this.priceBusiness = priceBusiness;
+    }
+
     @Override
     public String toString() {
         return "RawFlight{" +
@@ -100,6 +119,8 @@ public class RawFlight {
                 ", arrivalDate='" + arrivalDate + '\'' +
                 ", departureDate2='" + departureDate2 + '\'' +
                 ", arrivalDate2='" + arrivalDate2 + '\'' +
+                ", priceCasual='" + priceCasual + '\'' +
+                ", priceBusiness='" + priceBusiness + '\'' +
                 '}';
     }
 }

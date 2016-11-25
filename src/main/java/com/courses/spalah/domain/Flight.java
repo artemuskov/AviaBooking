@@ -43,6 +43,12 @@ public class Flight {
     @Column(name = "arrival_date")
     private Date arrivalDate;
 
+    @Column(name = "price_casual")
+    private Double priceCasual;
+
+    @Column(name = "price_business")
+    private Double priceBusiness;
+
     public Flight() {
     }
 
@@ -102,6 +108,22 @@ public class Flight {
         this.arrivalDate = arrivalDate;
     }
 
+    public Double getPriceCasual() {
+        return priceCasual;
+    }
+
+    public void setPriceCasual(Double priceCasual) {
+        this.priceCasual = priceCasual;
+    }
+
+    public Double getPriceBusiness() {
+        return priceBusiness;
+    }
+
+    public void setPriceBusiness(Double priceBusiness) {
+        this.priceBusiness = priceBusiness;
+    }
+
     @Override
     public String toString() {
         Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -113,6 +135,8 @@ public class Flight {
                 ", arrival=" + arrival.getCity() +
                 ", departureDate=" + formatter.format(departureDate) +
                 ", arrivalDate=" + formatter.format(arrivalDate) +
+                ", priceCasual=" + priceCasual +
+                ", priceBusiness=" + priceBusiness +
                 '}';
     }
 }
