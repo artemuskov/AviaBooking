@@ -13,7 +13,7 @@ public interface TicketService {
 
     Ticket getById(Long id);
 
-    Ticket save(Ticket ticket);
+    Ticket save(TicketRequest ticketRequest);
 
     List<Ticket> getAll(Long flight);
 

@@ -4,6 +4,7 @@ import com.courses.spalah.domain.Ticket;
 import com.courses.spalah.domain.TicketRequest;
 import com.courses.spalah.persistence.Dao;
 import com.courses.spalah.persistence.DaoForTicket;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -12,6 +13,15 @@ import java.util.List;
  */
 public class TicketServiceImpl implements TicketService{
     private final DaoForTicket<Ticket, Long, TicketRequest> ticketDao;
+
+    @Autowired
+    private PersonService personService;
+
+    @Autowired
+    private SeatService seatService;
+
+    @Autowired
+    private FlightService flightService;
 
 
     public TicketServiceImpl(DaoForTicket<Ticket, Long, TicketRequest> ticketDao) {
@@ -24,8 +34,14 @@ public class TicketServiceImpl implements TicketService{
     }
 
     @Override
-    public Ticket save(Ticket ticket) {
-        return ticketDao.save(ticket);
+    public Ticket save(TicketRequest ticketRequest) {
+        Ticket savedTicket = new Ticket();
+        savedTicket.setPerson(personService.getById(ticketRequest.getPerson()));
+        savedTicket.setSeat(seatService.getById(ticketRequest.getSeat()));
+        savedTicket.setFlight(flightService.getById(ticketRequest.getFlight()));
+        savedTicket.setState(ticketRequest.getState());
+        savedTicket.setPrice(ticketRequest.getPrice());
+        return ticketDao.save(savedTicket);
     }
 
     @Override
