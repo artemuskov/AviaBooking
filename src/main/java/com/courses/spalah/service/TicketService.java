@@ -13,13 +13,13 @@ public interface TicketService {
 
     Ticket getById(Long id);
 
-    Ticket save(Ticket ticket);
+    Ticket save(TicketRequest ticketRequest);
 
     List<Ticket> getAll(Long flight);
 
     Ticket delete(Long id);
 
-    Ticket update(Ticket ticket);
+    Ticket update(Long id, TicketRequest ticketRequest);
 
     Boolean checkTicket(TicketRequest ticket);
 }
