@@ -25,7 +25,6 @@ public class Ticket {
     @Column(name = "price")
     private Double price;
 
-
     @ManyToOne
     @JoinColumn(name = "flight_id", nullable = true)
     @JsonIgnore
@@ -81,11 +80,15 @@ public class Ticket {
         this.state = state;
     }
 
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "id=" + id +
+                ", seat=" + seat +
+                ", price=" + price +
+                ", flight=" + flight +
+                ", state=" + state +
+                ", person=" + person +
+                '}';
     }
 }

@@ -13,7 +13,7 @@ public interface TicketService {
 
     Ticket getById(Long id);
 
-    Ticket save(TicketRequest ticketRequest);
+    Ticket save(Ticket ticket);
 
     List<Ticket> getAll();
 
