@@ -15,6 +15,7 @@ import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -98,10 +99,15 @@ public class FlightController {
         flightService.update(updatedFlight);
         return new ResponseEntity<Flight>(updatedFlight, HttpStatus.OK);
     }
-    @RequestMapping(value = "search", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "search", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<List<Flight>> searchFlights(@RequestBody RawFlight flight) {
         List<Flight> flights = flightService.searchFlights(flight);
+        String str = "";
+        for (Iterator iterator = flights.iterator(); iterator.hasNext(); ) {
+            Flight fl = (Flight) iterator.next();
+            str+=fl.toString()+"\n";
+        }
         return new ResponseEntity<List<Flight>>(flights, HttpStatus.OK);
     }
 }

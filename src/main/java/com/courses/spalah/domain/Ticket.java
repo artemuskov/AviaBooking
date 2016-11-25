@@ -1,6 +1,7 @@
 package com.courses.spalah.domain;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -18,7 +19,7 @@ public class Ticket {
 
     @ManyToOne
     @JoinColumn(name = "seat_id", nullable = true)
-    @JsonManagedReference
+    @JsonBackReference
     private Seat seat;
 
     @Column(name = "price")
@@ -27,7 +28,7 @@ public class Ticket {
 
     @ManyToOne
     @JoinColumn(name = "flight_id", nullable = true)
-    @JsonManagedReference
+    @JsonIgnore
     private Flight flight;
 
     @Column(name = "state")
@@ -35,7 +36,6 @@ public class Ticket {
 
     @ManyToOne
     @JoinColumn(name = "person_id", nullable = true)
-    @JsonManagedReference
     private Person person;
 
     public Ticket() {

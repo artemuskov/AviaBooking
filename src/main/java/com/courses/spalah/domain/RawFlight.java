@@ -87,4 +87,19 @@ public class RawFlight {
     public void setArrivalDate2(String arrivalDate2) {
         this.arrivalDate2 = arrivalDate2;
     }
+
+    @Override
+    public String toString() {
+        return "RawFlight{" +
+                "id=" + id +
+                ", flightNumber='" + flightNumber + '\'' +
+                ", currentPlane=" + currentPlane +
+                ", departure=" + departure +
+                ", arrival=" + arrival +
+                ", departureDate='" + departureDate + '\'' +
+                ", arrivalDate='" + arrivalDate + '\'' +
+                ", departureDate2='" + departureDate2 + '\'' +
+                ", arrivalDate2='" + arrivalDate2 + '\'' +
+                '}';
+    }
 }

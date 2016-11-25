@@ -1,18 +1,17 @@
 package com.courses.spalah.persistence;
 
 import com.courses.spalah.domain.Flight;
-import com.courses.spalah.domain.Location;
 import com.courses.spalah.domain.RawFlight;
 import org.hibernate.Criteria;
-import org.hibernate.criterion.Expression;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-import java.util.Date;
+import java.text.Format;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 
@@ -55,26 +54,31 @@ public class FlightDao implements DaoForFlight<Flight, Long, RawFlight> {
     }
     @Override
     public List<Flight> searchFlights(RawFlight searchedFlight) {
-        /*CriteriaQuery<Flight> crit = entityManager.getCriteriaBuilder().createQuery(Flight.class);
-        Root<Flight> flight = crit.from(Flight.class);
-        crit = crit.select(flight).alias(
-        crit..createCriteria("flight")
-                .createAlias("flight.arrival_id", "arrival", Criteria.LEFT_JOIN)
-                .createAlias("flight.departure_id", "departure", Criteria.LEFT_JOIN);
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        System.out.println(searchedFlight.toString());
+        Session session =   entityManager.unwrap(Session.class);
+        Criteria crit = session.createCriteria(Flight.class);
         if(long.class.isInstance(searchedFlight.getId()))
-            crit.add(Expression.eq("id",searchedFlight.getId()));
-        if(String.class.isInstance(searchedFlight.getFlightNumber()) && String.class.isInstance(searchedFlight.getFlightNumber()))
-            crit.add(Expression.like("flight_number","upper(%"+searchedFlight.getFlightNumber().toUpperCase()+"%)"));
-        if(Date.class.isInstance(searchedFlight.getArrivalDate()) && Date.class.isInstance(searchedFlight.getDepartureDate2()))
-            crit.add(Expression.between("arrival_date",searchedFlight.getArrivalDate(),searchedFlight.getArrivalDate2()));
-        if(Date.class.isInstance(searchedFlight.getDepartureDate()) && Date.class.isInstance(searchedFlight.getDepartureDate2()))
-            crit.add(Expression.between("departure_date",searchedFlight.getDepartureDate(),searchedFlight.getDepartureDate2()));
+            crit.add(Restrictions.eq("id", searchedFlight.getId()));
+        if(searchedFlight.getFlightNumber() != null)
+            crit.add(Restrictions.eq("flightNumber", new String(searchedFlight.getFlightNumber())));
+        if(searchedFlight.getArrivalDate() != null && searchedFlight.getArrivalDate2() != null)
+            try {
+                crit.add(Restrictions.between("arrivalDate",formatter.parseObject(searchedFlight.getArrivalDate()),formatter.parseObject(searchedFlight.getArrivalDate2())));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        if(searchedFlight.getDepartureDate() != null && searchedFlight.getDepartureDate2() != null)
+            try {
+                crit.add(Restrictions.between("departureDate",formatter.parseObject(searchedFlight.getDepartureDate()),formatter.parseObject(searchedFlight.getDepartureDate2())));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         if(String.class.isInstance(searchedFlight.getArrival()))
-            crit.add(Expression.like("arrival.city",searchedFlight.getArrival()));
+            crit.add(Restrictions.eq("arrival",searchedFlight.getArrival()));
         if(String.class.isInstance(searchedFlight.getDeparture()))
-            crit.add(Expression.like("arrival.departure",searchedFlight.getDeparture()));
-//flightNumber
-        List<Flight> cats = crit.list();*/
-        return null;
+            crit.add(Restrictions.eq("departure",searchedFlight.getDeparture()));
+        crit.setResultTransformer(crit.DISTINCT_ROOT_ENTITY);
+        return crit.list();
     }
 }

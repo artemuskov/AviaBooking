@@ -1,8 +1,10 @@
 package com.courses.spalah.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 /**
  * Created by artem on 17.11.2016.
@@ -26,6 +28,10 @@ public class Seat {
 
     @Column(name = "business")
     private boolean isBusiness;
+
+    @OneToMany(mappedBy = "seat", fetch=FetchType.EAGER)
+    @JsonManagedReference
+    private Collection<Ticket> tickets;
 
     public Seat() {
     }
@@ -60,5 +66,13 @@ public class Seat {
 
     public void setBusiness(boolean business) {
         isBusiness = business;
+    }
+
+    public Collection<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(Collection<Ticket> tickets) {
+        this.tickets = tickets;
     }
 }
