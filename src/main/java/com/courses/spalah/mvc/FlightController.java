@@ -60,6 +60,8 @@ public class FlightController {
         }
         newFlight.setArrivalDate(arrivalDate);
         newFlight.setDepartureDate(departureDate);
+        newFlight.setPriceBusiness(flight.getPriceBusiness());
+        newFlight.setPriceCasual(flight.getPriceCasual());
         flightService.save(newFlight);
         return new ResponseEntity<>(newFlight, HttpStatus.OK);
     }
@@ -96,6 +98,8 @@ public class FlightController {
         }
         updatedFlight.setArrivalDate(arrivalDate);
         updatedFlight.setDepartureDate(departureDate);
+        updatedFlight.setPriceBusiness(flight.getPriceBusiness());
+        updatedFlight.setPriceCasual(flight.getPriceCasual());
         flightService.update(updatedFlight);
         return new ResponseEntity<Flight>(updatedFlight, HttpStatus.OK);
     }

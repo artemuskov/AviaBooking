@@ -17,6 +17,8 @@ CREATE TABLE IF NOT EXISTS `flight` (
   `arrival_id` bigint(20) DEFAULT NULL,
   `departure_date` datetime DEFAULT NULL,
   `arrival_date` datetime DEFAULT NULL,
+  `price_casual` double DEFAULT NULL,
+  `price_business` double DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id` (`id`),
   KEY `FK_flight_location` (`departure_id`),
@@ -25,12 +27,12 @@ CREATE TABLE IF NOT EXISTS `flight` (
   CONSTRAINT `FK_flight_location` FOREIGN KEY (`departure_id`) REFERENCES `location` (`id`),
   CONSTRAINT `FK_flight_location_2` FOREIGN KEY (`arrival_id`) REFERENCES `location` (`id`),
   CONSTRAINT `FK_flight_plane` FOREIGN KEY (`plane_id`) REFERENCES `plane` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 DELETE FROM `flight`;
 /*!40000 ALTER TABLE `flight` DISABLE KEYS */;
-INSERT INTO `flight` (`id`, `flight_number`, `plane_id`, `departure_id`, `arrival_id`, `departure_date`, `arrival_date`) VALUES
-	(1, 'E27', 7, 1, 2, '2016-11-19 17:50:19', '2016-11-19 17:50:21');
+INSERT INTO `flight` (`id`, `flight_number`, `plane_id`, `departure_id`, `arrival_id`, `departure_date`, `arrival_date`, `price_casual`, `price_business`) VALUES
+	(1, 'E27', 7, 1, 2, '2016-11-19 17:50:19', '2016-11-19 17:50:21', 200, 350);
 /*!40000 ALTER TABLE `flight` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `location`;
@@ -235,7 +237,7 @@ DROP TABLE IF EXISTS `ticket`;
 CREATE TABLE IF NOT EXISTS `ticket` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `seat_id` bigint(20) DEFAULT NULL,
-  `price` double DEFAULT NULL,
+  `luggage` bigint(20) DEFAULT NULL,
   `flight_id` bigint(20) DEFAULT NULL,
   `state` bigint(20) DEFAULT NULL,
   `person_id` bigint(20) DEFAULT NULL,
@@ -247,12 +249,12 @@ CREATE TABLE IF NOT EXISTS `ticket` (
   CONSTRAINT `FK_ticket_flight` FOREIGN KEY (`flight_id`) REFERENCES `flight` (`id`),
   CONSTRAINT `FK_ticket_person` FOREIGN KEY (`person_id`) REFERENCES `person` (`id`),
   CONSTRAINT `FK_ticket_place` FOREIGN KEY (`seat_id`) REFERENCES `seat` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 DELETE FROM `ticket`;
 /*!40000 ALTER TABLE `ticket` DISABLE KEYS */;
-INSERT INTO `ticket` (`id`, `seat_id`, `price`, `flight_id`, `state`, `person_id`) VALUES
-	(1, 85, 200, 1, 1, 1);
+INSERT INTO `ticket` (`id`, `seat_id`, `luggage`, `flight_id`, `state`, `person_id`) VALUES
+	(1, 85, 1, 1, 1, 1);
 /*!40000 ALTER TABLE `ticket` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

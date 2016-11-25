@@ -7,7 +7,7 @@ public class TicketRequest {
 
     private Long id;
     private Long seat;
-    private Double price;
+    private Long luggage;
     private Long flight;
     private Long person;
     private Long state;
@@ -23,12 +23,12 @@ public class TicketRequest {
         this.id = id;
     }
 
-    public Double getPrice() {
-        return price;
+    public Long getLuggage() {
+        return luggage;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setLuggage(Long luggage) {
+        this.luggage = luggage;
     }
 
     public Long getSeat() {
