@@ -1,5 +1,6 @@
 package com.courses.spalah.service;
 
+import com.courses.spalah.domain.Person;
 import com.courses.spalah.domain.Ticket;
 import com.courses.spalah.domain.TicketRequest;
 import com.courses.spalah.persistence.Dao;
@@ -35,8 +36,15 @@ public class TicketServiceImpl implements TicketService{
 
     @Override
     public Ticket save(TicketRequest ticketRequest) {
+        Person savedPerson = new Person();
+        savedPerson.setAge(ticketRequest.getAge());
+        savedPerson.setEmail(ticketRequest.getEmail());
+        savedPerson.setFirstName(ticketRequest.getFirstName());
+        savedPerson.setLastName(ticketRequest.getLastName());
+        savedPerson.setPassport(ticketRequest.getPassport());
+        savedPerson = personService.save(savedPerson);
         Ticket savedTicket = new Ticket();
-        savedTicket.setPerson(personService.getById(ticketRequest.getPerson()));
+        savedTicket.setPerson(savedPerson);
         savedTicket.setSeat(seatService.getById(ticketRequest.getSeat()));
         savedTicket.setFlight(flightService.getById(ticketRequest.getFlight()));
         savedTicket.setState(ticketRequest.getState());
@@ -45,8 +53,8 @@ public class TicketServiceImpl implements TicketService{
     }
 
     @Override
-    public List<Ticket> getAll(Long flight) {
-        return ticketDao.getAll(flight);
+    public List<Ticket> getAll() {
+        return ticketDao.getAll();
     }
 
     @Override

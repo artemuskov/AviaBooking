@@ -2,9 +2,11 @@ package com.courses.spalah.persistence;
 
 import com.courses.spalah.domain.Flight;
 import com.courses.spalah.domain.RawFlight;
+import com.courses.spalah.service.LocationService;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -22,6 +24,9 @@ import java.util.List;
 public class FlightDao implements DaoForFlight<Flight, Long, RawFlight> {
     @PersistenceContext
     private EntityManager entityManager;
+
+    @Autowired
+    private LocationService locationService;
 
     @Override
     public Flight getById(Long id) {
@@ -58,7 +63,7 @@ public class FlightDao implements DaoForFlight<Flight, Long, RawFlight> {
         Session session =   entityManager.unwrap(Session.class);
         Criteria crit = session.createCriteria(Flight.class);
         if(Long.class.isInstance(searchedFlight.getId()))
-            crit.add(Restrictions.eq("id", searchedFlight.getId()));
+            crit.add(Restrictions.eq("id", getById(searchedFlight.getId()).getId()));
         if(searchedFlight.getFlightNumber() != null)
             crit.add(Restrictions.eq("flightNumber", new String(searchedFlight.getFlightNumber())));
         if(searchedFlight.getArrivalDate() != null && searchedFlight.getArrivalDate2() != null)
@@ -73,10 +78,10 @@ public class FlightDao implements DaoForFlight<Flight, Long, RawFlight> {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-        if(String.class.isInstance(searchedFlight.getArrival()))
-            crit.add(Restrictions.eq("arrival",searchedFlight.getArrival()));
-        if(String.class.isInstance(searchedFlight.getDeparture()))
-            crit.add(Restrictions.eq("departure",searchedFlight.getDeparture()));
+        if(Long.class.isInstance(searchedFlight.getArrival()))
+            crit.add(Restrictions.eq("arrival",locationService.getById(searchedFlight.getArrival())));
+        if(Long.class.isInstance(searchedFlight.getDeparture()))
+            crit.add(Restrictions.eq("departure",locationService.getById(searchedFlight.getDeparture())));
         crit.setResultTransformer(crit.DISTINCT_ROOT_ENTITY);
         return crit.list();
     }

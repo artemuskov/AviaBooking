@@ -11,7 +11,7 @@ public interface DaoForTicket<E, I, R> {
 
     E save(E entity);
 
-    List<E> getAll(I flight);
+    List<E> getAll();
 
     E delete(I id);
 

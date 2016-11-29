@@ -15,7 +15,7 @@ public interface TicketService {
 
     Ticket save(TicketRequest ticketRequest);
 
-    List<Ticket> getAll(Long flight);
+    List<Ticket> getAll();
 
     Ticket delete(Long id);
 

@@ -13,13 +13,13 @@ public interface FlightService {
 
     Flight getById(Long id);
 
-    Flight save(Flight flight);
+    Flight save(RawFlight flight);
 
     List<Flight> getAll();
 
     Flight delete(Long id);
 
-    Flight update(Flight flight);
+    Flight update(RawFlight flight);
 
     List<Flight> searchFlights(RawFlight searchedFlight);
 }

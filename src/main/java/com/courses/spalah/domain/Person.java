@@ -22,32 +22,18 @@ public class Person {
     private long id;
 
     @Column(name = "first_name")
-//    @NotNull(message="Имя должно быть задано")
-//    @Size(min = 3, message="Длина имени должна быть больше трех")
     private String firstName;
 
     @Column(name = "last_name")
-//    @NotNull(message="Фамилия должна быть задана")
-//    @Size(min = 3, message="Длина фамилии должна быть больше трех")
     private String lastName;
 
     @Column(name = "age")
-//    @Min(value=0, message="Возраст больше нуля")
-//    @NotNull(message="Возраст должен быть задан")
     private int age;
 
     @Column(name = "passport")
-//    @Size(min=8, max=8, message="Не правильный формат паспортных данных")
-//    @NotNull(message="Паспортные данные должены быть указаны")
     private String passport;
 
     @Column(name = "email")
-//    @NotNull(message="Имэйл должен быть задан")
-//    @Pattern(regexp = "^(?:[a-zA-Z0-9_'^&/+-])+(?:\\.(?:[a-zA-Z0-9_'^&/+-])+)" +
-//            "*@(?:(?:\\[?(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))\\.)" +
-//            "{3}(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\]?)|(?:[a-zA-Z0-9-]+\\.)" +
-//            "+(?:[a-zA-Z]){2,}\\.?)$",
-//            message = "заданный имэйл не может существовать")
     private String email;
 
     public Person() {

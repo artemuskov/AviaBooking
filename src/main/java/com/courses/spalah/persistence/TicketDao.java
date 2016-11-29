@@ -32,10 +32,8 @@ public class TicketDao implements DaoForTicket<Ticket, Long, TicketRequest> {
     }
 
     @Override
-    public List<Ticket> getAll(Long flight) {
-        TypedQuery<Ticket> query = entityManager.createQuery(
-                "SELECT c FROM ticket c WHERE flight_id = :flightt", Ticket.class);
-        List<Ticket> tickets = query.setParameter("flightt", flight).getResultList();
+    public List<Ticket> getAll() {
+        List<Ticket> tickets = entityManager.createQuery("from ticket", Ticket.class).getResultList();
         return tickets;
     }
 

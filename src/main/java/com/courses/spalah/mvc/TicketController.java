@@ -41,8 +41,8 @@ public class TicketController {
     }
 
     @RequestMapping(value = "all", method = RequestMethod.GET)
-    public ResponseEntity<List<Ticket>> getAllTickets(@RequestParam Long flight) {
-        List<Ticket> tickets = ticketService.getAll(flight);
+    public ResponseEntity<List<Ticket>> getAllTickets() {
+        List<Ticket> tickets = ticketService.getAll();
         return new ResponseEntity<List<Ticket>>(tickets, HttpStatus.OK);
     }
 

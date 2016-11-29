@@ -27,10 +27,10 @@ public class PersonController {
         return new ResponseEntity<>(person, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    /*@RequestMapping(value = "save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Person> savePerson(@RequestBody Person person) {
         Person savedPerson = personService.save(person);
         return new ResponseEntity<>(savedPerson, HttpStatus.OK);
-    }
+    }*/
 }
